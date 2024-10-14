@@ -1,41 +1,29 @@
 import streamlit as st
 from PIL import Image
 
-# Funções de login e cadastro
-def login():
-    st.write("Login page")
-    # Aqui você pode adicionar o código para a página de login.
+# Importando as funções de login e cadastro
+from Login import main as login_main
+from Cadastro import main as register_main
 
-def register():
-    st.write("Register page")
-    # Aqui você pode adicionar o código para a página de cadastro.
+# Título da página
+st.title("Aurora's Realm: The Enchanted Adventure")
 
-# Configuração da página
-st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="wide")
+# Carregar e exibir a imagem de fundo
+image = Image.open("Cidade_de_Aurora.png")
+st.image(image, use_column_width=True)
 
-# Carregar a imagem de fundo
-background_image = Image.open("Cidade_de_Aurora.png")
+# Criar um espaço em branco para dar espaço aos botões
+st.write("<br>", unsafe_allow_html=True)  # Usando HTML para criar espaço
 
-# Exibir a imagem de fundo
-st.image(background_image, use_column_width=True)
+# Botão "Start"
+if st.button("Start"):
+    # Oferecer opções de login ou cadastro
+    option = st.selectbox("Escolha uma opção:", ["Login", "Cadastro"])
 
-# Adicionar um título sobre a imagem
-st.markdown(
-    """
-    <h1 style='text-align: center; color: white;'>Aurora's Realm: The Enchanted Adventure</h1>
-    """, unsafe_allow_html=True
-)
+    if option == "Login":
+        login_main()  # Chamar a função principal do login
+    elif option == "Cadastro":
+        register_main()  # Chamar a função principal do cadastro
 
-# Botões para Login e Cadastro
-col1, col2 = st.columns(2)
-
-with col1:
-    if st.button("Login"):
-        login()  # Chamar a função de login
-
-with col2:
-    if st.button("Cadastro"):
-        register()  # Chamar a função de cadastro
-
-# Adicionar espaço extra para os botões estarem centralizados verticalmente
-st.write("<br>" * 10, unsafe_allow_html=True)
+# Se precisar de mais espaço na página, você pode adicionar
+st.write("<br><br><br>", unsafe_allow_html=True)  # Mais espaços em branco
