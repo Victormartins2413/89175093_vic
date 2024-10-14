@@ -5,27 +5,44 @@ from PIL import Image
 image = Image.open("Cidade_de_Aurora.png")
 
 # Configurar o layout do Streamlit
-st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="wide")
+st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="centered")
 
 # Exibir a imagem de fundo
 st.image(image, use_column_width=True)
 
+# Criar uma seção de estilo para o CSS
+st.markdown(
+    """
+    <style>
+        .overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .btn {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 # Criar um contêiner para sobrepor os botões
-with st.container():
-    st.markdown("<h1 style='text-align: center; color: white;'>Bem-vindo ao Reino de Aurora</h1>", unsafe_allow_html=True)
+st.markdown('<div class="overlay">', unsafe_allow_html=True)
 
-    # Criar uma linha com três colunas
-    col1, col2, col3 = st.columns(3)
+# Adicionar os botões
+if st.button("Login", key="login", help="Clique para fazer login"):
+    st.write("Você clicou em 'Login'!")
 
-    # Adicionar botões nas colunas
-    with col1:
-        if st.button("Login"):
-            st.write("Você clicou em 'Login'!")
+if st.button("Start", key="start", help="Clique para começar"):
+    st.write("Você clicou em 'Start'!")
 
-    with col2:
-        if st.button("Start"):
-            st.write("Você clicou em 'Start'!")
+if st.button("Cadastro", key="cadastro", help="Clique para se cadastrar"):
+    st.write("Você clicou em 'Cadastro'!")
 
-    with col3:
-        if st.button("Cadastro"):
-            st.write("Você clicou em 'Cadastro'!")
+st.markdown('</div>', unsafe_allow_html=True)
