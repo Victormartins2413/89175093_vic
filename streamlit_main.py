@@ -42,9 +42,12 @@ with st.container():
         st.session_state.show_buttons = False
 
     # Adicionar o botão "Start" em cima da imagem
+    st.markdown('<div class="overlay">', unsafe_allow_html=True)
     if st.button("Start", key="start", help="Clique para começar"):
         st.session_state.show_buttons = True
         st.write("Você clicou em 'Start'!")
+
+    st.markdown('</div>', unsafe_allow_html=True)
 
     # Exibir os botões "Login" e "Cadastro" apenas se "Start" for clicado
     if st.session_state.show_buttons:
