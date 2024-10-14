@@ -32,17 +32,24 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Criar uma variável de sessão para controlar a visibilidade dos botões
+if 'show_buttons' not in st.session_state:
+    st.session_state.show_buttons = False
+
 # Criar um contêiner para sobrepor os botões
 st.markdown('<div class="overlay">', unsafe_allow_html=True)
 
-# Adicionar os botões
-if st.button("Login", key="login", help="Clique para fazer login"):
-    st.write("Você clicou em 'Login'!")
-
+# Adicionar o botão "Start"
 if st.button("Start", key="start", help="Clique para começar"):
+    st.session_state.show_buttons = True
     st.write("Você clicou em 'Start'!")
 
-if st.button("Cadastro", key="cadastro", help="Clique para se cadastrar"):
-    st.write("Você clicou em 'Cadastro'!")
+# Exibir os botões "Login" e "Cadastro" apenas se "Start" for clicado
+if st.session_state.show_buttons:
+    if st.button("Login", key="login", help="Clique para fazer login"):
+        st.write("Você clicou em 'Login'!")
+
+    if st.button("Cadastro", key="cadastro", help="Clique para se cadastrar"):
+        st.write("Você clicou em 'Cadastro'!")
 
 st.markdown('</div>', unsafe_allow_html=True)
