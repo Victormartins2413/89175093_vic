@@ -14,13 +14,15 @@ image = Image.open("Cidade_de_Aurora.png")
 # Exibir a imagem de fundo
 st.image(image, use_column_width=True)
 
-# Criar um espaço para os botões sobre a imagem
+# Container para sobrepor elementos
 st.markdown(
     """
     <style>
-    .container {
-        position: relative;
-        top: -700px; /* Ajuste para posicionar acima da imagem */
+    .overlay {
+        position: absolute;
+        top: 30%; /* Ajuste a posição vertical */
+        left: 50%;
+        transform: translate(-50%, -50%);
         text-align: center;
     }
     .button {
@@ -42,17 +44,16 @@ st.markdown(
 )
 
 # Container para os botões
-with st.container():
-    st.markdown("<div class='container'>", unsafe_allow_html=True)
+st.markdown("<div class='overlay'>", unsafe_allow_html=True)
 
-    # Botão "Start"
-    if st.button("Start", key="start_button", help="Clique para começar", css_class='button'):
-        # Oferecer opções de login ou cadastro
-        option = st.selectbox("Escolha uma opção:", ["Login", "Cadastro"])
+# Botão "Start"
+if st.button("Start", key="start_button", help="Clique para começar"):
+    # Oferecer opções de login ou cadastro
+    option = st.selectbox("Escolha uma opção:", ["Login", "Cadastro"])
 
-        if option == "Login":
-            login_main()  # Chamar a função principal do login
-        elif option == "Cadastro":
-            register_main()  # Chamar a função principal do cadastro
+    if option == "Login":
+        login_main()  # Chamar a função principal do login
+    elif option == "Cadastro":
+        register_main()  # Chamar a função principal do cadastro
 
-    st.markdown("</div>", unsafe_allow_html=True)  # Fechar o div
+st.markdown("</div>", unsafe_allow_html=True)  # Fechar o div
