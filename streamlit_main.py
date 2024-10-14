@@ -10,24 +10,22 @@ st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout=
 # Exibir a imagem de fundo
 st.image(image, use_column_width=True)
 
-# Centralizar os botões em cima da imagem
-col1, col2, col3 = st.columns([1, 2, 1])  # Colunas para centralizar os botões
+# Criar um contêiner para sobrepor os botões
+with st.container():
+    st.markdown("<h1 style='text-align: center; color: white;'>Bem-vindo ao Reino de Aurora</h1>", unsafe_allow_html=True)
 
-with col1:
-    st.write("")  # espaço vazio
+    # Criar uma linha com três colunas
+    col1, col2, col3 = st.columns(3)
 
-with col2:
-    if st.button("Start"):
-        st.write("Você clicou em 'Start'!")
-        
-with col3:
-    st.write("")  # espaço vazio
+    # Adicionar botões nas colunas
+    with col1:
+        if st.button("Login"):
+            st.write("Você clicou em 'Login'!")
 
-# Adicionar mais botões (Login e Cadastro)
-with col1:
-    if st.button("Login"):
-        st.write("Você clicou em 'Login'!")
-        
-with col3:
-    if st.button("Cadastro"):
-        st.write("Você clicou em 'Cadastro'!")
+    with col2:
+        if st.button("Start"):
+            st.write("Você clicou em 'Start'!")
+
+    with col3:
+        if st.button("Cadastro"):
+            st.write("Você clicou em 'Cadastro'!")
