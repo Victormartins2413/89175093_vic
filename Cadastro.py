@@ -15,15 +15,15 @@ BLUE = (106, 159, 181)
 # Definição da largura e altura da janela
 WIDTH, HEIGHT = 900, 800
 
-# Caminho completo para o arquivo do banco de dados
-caminho_banco_de_dados = r'C:\Users\Victor\Music\Pasta_do_Tuguito\FIAP\Test-jogo\cadastro.db'
+# Caminho relativo para o arquivo do banco de dados (ajuste conforme necessário)
+caminho_banco_de_dados = r'cadastro.db'
 
 # Criar a janela
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Cadastro")
 
-# Carregar a imagem
-image = pygame.image.load("Imagens/Aurora-1.png")  # Substitua "Aurora-1.png" pelo caminho correto da sua imagem
+# Carregar a imagem (ajuste o caminho conforme necessário)
+image = pygame.image.load("Aurora-1.png")  # Caminho relativo para a imagem
 
 # Definir o fator de escala da imagem
 scale_factor = 1.5
@@ -85,7 +85,7 @@ def main():
                 top_offset += 70
                 button_rect = pygame.Rect(WIDTH // 4 - 25, top_offset, WIDTH // 2, 50)
                 if button_rect.collidepoint(mouse_x, mouse_y):
-                    os.system("python main.py")
+                    os.system("python streamlit_main.py")  # Redireciona para a interface Streamlit
                     pygame.quit()
                     sys.exit()
                 draw_register_page(fields, active_field)
