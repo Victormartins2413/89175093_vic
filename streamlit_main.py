@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime
 
 # Definindo o título da página
 st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="wide")
@@ -46,6 +47,20 @@ st.markdown(
         padding: 20px;
         border-radius: 10px;
     }
+
+    /* Estilo do vídeo */
+    .video-container {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    /* Estilo do contador */
+    .counter {
+        font-size: 24px;
+        text-align: center;
+        margin-top: 20px;
+        color: #FFD700; /* Cor dourada */
+    }
     </style>
     """,
     unsafe_allow_html=True
@@ -62,6 +77,11 @@ with st.sidebar:
     if st.button("Cadastrar", key='register_button'):
         st.success("Cadastro realizado com sucesso!")  # Lógica de cadastro pode ser adicionada
 
+# Adicionando o vídeo
+st.markdown("<div class='video-container'>", unsafe_allow_html=True)
+st.video("Vídeo_de_entrada.mp4")  # Certifique-se de que o vídeo esteja no mesmo diretório que seu script
+st.markdown("</div>", unsafe_allow_html=True)
+
 # Adicionando informações sobre o jogo
 st.title("Aurora's Realm: The Enchanted Adventure")
 st.markdown("""
@@ -77,17 +97,26 @@ Faça o download do nosso jogo [aqui](https://exemplo.com/download) e junte-se �
 ---
 
 **Novidades do Jogo**  
-Fique por dentro das últimas atualizações e recursos que estamos implementando. Confira o nosso blog para mais informações.
+Estamos empolgados para anunciar que **Aurora's Realm: The Enchanted Adventure** será lançado em **junho de 2025**! 
+Fique atento às atualizações para mais informações.
 
 ---
 
+**Contagem Regressiva até o Lançamento**  
+""")
+
+# Contador regressivo
+launch_date = datetime(2025, 6, 30)  # Data de lançamento
+today = datetime.now()  # Data atual
+time_remaining = launch_date - today  # Cálculo do tempo restante
+
+# Exibir tempo restante
+st.markdown(f"<div class='counter'>Faltam {time_remaining.days} dias até o lançamento!</div>", unsafe_allow_html=True)
+
+# Eventos
+st.markdown("""
 **Eventos**  
 Participe dos nossos eventos mensais e ganhe prêmios incríveis! Fique atento às nossas redes sociais para atualizações.
-
----
-
-**Data do Lançamento do Jogo**  
-**Aurora's Realm: The Enchanted Adventure** será lançado no dia **01 de janeiro de 2025**. Prepare-se para a aventura!
 """)
 
 # Rodapé
