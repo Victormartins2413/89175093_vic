@@ -1,131 +1,109 @@
 import streamlit as st
-from datetime import datetime
 
-# Definindo o título da página
+# Configuração da página
 st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="wide")
 
-# Definindo o CSS para estilizar a página
+# Estilo CSS personalizado para a imagem de fundo e a aparência geral
 st.markdown(
     """
     <style>
-    /* Estilo da página */
     .stApp {
-        background-image: url("https://via.placeholder.com/1600x900");  /* Substitua pela URL da imagem do seu jogo */
+        background-image: url("https://via.placeholder.com/1600x900");  /* Substitua pela URL da sua imagem de fundo */
         background-size: cover;
         background-position: center;
         color: white;
-        padding: 20px;
+        height: 100vh;
     }
 
-    /* Estilizando os cabeçalhos */
-    h1, h2 {
-        font-family: 'Arial', sans-serif;
-        text-align: center;
-        margin-bottom: 20px;
+    /* Estilo dos botões de navegação */
+    .navigation-buttons {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 30px;
     }
 
-    /* Estilizando o botão */
-    .button {
-        display: block;
-        width: 100%;
-        padding: 10px;
-        margin: 10px 0;
-        background-color: #1E90FF;  /* Cor do botão */
+    .nav-btn {
+        background-color: #1E90FF;
         color: white;
+        padding: 10px 20px;
+        margin: 5px;
         border: none;
         border-radius: 5px;
         cursor: pointer;
+        text-decoration: none;
     }
 
-    .button:hover {
-        background-color: #00BFFF;  /* Cor do botão ao passar o mouse */
-    }
-
-    /* Estilo da barra lateral */
-    .sidebar .sidebar-content {
-        background-color: rgba(0, 0, 0, 0.5);
-        padding: 20px;
-        border-radius: 10px;
-    }
-
-    /* Estilo do vídeo */
-    .video-container {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    
-    /* Estilo do contador */
-    .counter {
-        font-size: 24px;
-        text-align: center;
-        margin-top: 20px;
-        color: #FFD700; /* Cor dourada */
+    .nav-btn:hover {
+        background-color: #00BFFF;
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Criando uma barra lateral para login e cadastro
+# Barra lateral de login/cadastro
 with st.sidebar:
     st.header("Entrar ou Cadastrar")
     login = st.text_input("Usuário")
     password = st.text_input("Senha", type="password")
     
-    if st.button("Entrar", key='login_button'):
-        st.success("Login realizado com sucesso!")  # Lógica de autenticação pode ser adicionada
-    if st.button("Cadastrar", key='register_button'):
-        st.success("Cadastro realizado com sucesso!")  # Lógica de cadastro pode ser adicionada
+    if st.button("Entrar"):
+        st.success("Login realizado com sucesso!")
+    if st.button("Cadastrar"):
+        st.success("Cadastro realizado com sucesso!")
 
-# Adicionando o vídeo em loop
-st.markdown(
-    """
-    <div class='video-container'>
-        <video autoplay loop muted playsinline style="width: 100%; height: auto;">
-            <source src="Vídeo_de_entrada.mp4" type="video/mp4">  <!-- Certifique-se de que o vídeo esteja no mesmo diretório que seu script -->
-            Seu navegador não suporta o vídeo.
-        </video>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+# Definindo navegação com opções de diferentes seções
+st.markdown("<div class='navigation-buttons'>", unsafe_allow_html=True)
+section = st.radio("Navegação", ["Home", "Quem somos", "Downloads", "Novidades", "Eventos", "Data de Lançamento", "Entrar"])
+st.markdown("</div>", unsafe_allow_html=True)
 
-# Adicionando informações sobre o jogo
-st.title("Aurora's Realm: The Enchanted Adventure")
-st.markdown("""
-**Quem somos?**  
-Nós somos uma equipe de desenvolvedores dedicados a criar experiências de jogo emocionantes. 
-Nosso objetivo é proporcionar aos jogadores um ambiente imersivo e divertido.
+# Conteúdo das páginas
+if section == "Home":
+    st.title("Bem-vindo ao Aurora's Realm: The Enchanted Adventure")
+    st.write("""
+    Aurora's Realm é um mundo mágico onde heróis exploram terras encantadas e enfrentam desafios épicos. 
+    Fique atento para atualizações diárias sobre o desenvolvimento e novas funcionalidades.
+    """)
 
----
+elif section == "Quem somos":
+    st.title("Quem somos?")
+    st.write("""
+    Nós somos uma equipe de desenvolvedores apaixonados por criar experiências imersivas. 
+    Nosso objetivo é proporcionar um jogo que inspire, desafie e entretenha jogadores de todas as idades.
+    """)
 
-**Downloads do Jogo**  
-Faça o download do nosso jogo [aqui](https://exemplo.com/download) e junte-se à aventura!
+elif section == "Downloads":
+    st.title("Downloads do Jogo")
+    st.write("""
+    O lançamento do jogo ocorrerá em **junho de 2025**. Fique de olho nas novidades e, em breve, 
+    o download estará disponível!
+    """)
 
----
+elif section == "Novidades":
+    st.title("Novidades do Jogo")
+    st.write("""
+    Últimas notícias sobre o desenvolvimento de Aurora's Realm:  
+    - Novos recursos e mecânicas implementadas.
+    - Testes beta fechados em andamento.
+    """)
 
-**Novidades do Jogo**  
-Estamos empolgados para anunciar que **Aurora's Realm: The Enchanted Adventure** será lançado em **junho de 2025**! 
-Fique atento às atualizações para mais informações.
+elif section == "Eventos":
+    st.title("Eventos")
+    st.write("""
+    Participe de eventos únicos dentro do jogo! Desafie seus amigos e conquiste prêmios incríveis. 
+    Confira nossa agenda de eventos nas redes sociais.
+    """)
 
----
+elif section == "Data de Lançamento":
+    st.title("Data de Lançamento")
+    st.write("""
+    **Aurora's Realm: The Enchanted Adventure** será lançado oficialmente em **junho de 2025**.
+    Prepare-se para uma aventura incrível!
+    """)
 
-**Contagem Regressiva até o Lançamento**  
-""")
-
-# Contador regressivo
-launch_date = datetime(2025, 6, 30)  # Data de lançamento
-today = datetime.now()  # Data atual
-time_remaining = launch_date - today  # Cálculo do tempo restante
-
-# Exibir tempo restante
-st.markdown(f"<div class='counter'>Faltam {time_remaining.days} dias até o lançamento!</div>", unsafe_allow_html=True)
-
-# Eventos
-st.markdown("""
-**Eventos**  
-Participe dos nossos eventos mensais e ganhe prêmios incríveis! Fique atento às nossas redes sociais para atualizações.
-""")
+elif section == "Entrar":
+    st.title("Entrar")
+    st.write("Faça login ou registre-se para acessar conteúdos exclusivos do site e do jogo.")
 
 # Rodapé
 st.markdown("---")
