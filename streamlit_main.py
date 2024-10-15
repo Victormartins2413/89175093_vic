@@ -77,10 +77,18 @@ with st.sidebar:
     if st.button("Cadastrar", key='register_button'):
         st.success("Cadastro realizado com sucesso!")  # Lógica de cadastro pode ser adicionada
 
-# Adicionando o vídeo
-st.markdown("<div class='video-container'>", unsafe_allow_html=True)
-st.video("Vídeo_de_entrada.mp4")  # Certifique-se de que o vídeo esteja no mesmo diretório que seu script
-st.markdown("</div>", unsafe_allow_html=True)
+# Adicionando o vídeo em loop
+st.markdown(
+    """
+    <div class='video-container'>
+        <video autoplay loop muted playsinline style="width: 100%; height: auto;">
+            <source src="Vídeo_de_entrada.mp4" type="video/mp4">  <!-- Certifique-se de que o vídeo esteja no mesmo diretório que seu script -->
+            Seu navegador não suporta o vídeo.
+        </video>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # Adicionando informações sobre o jogo
 st.title("Aurora's Realm: The Enchanted Adventure")
