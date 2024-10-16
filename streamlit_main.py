@@ -3,8 +3,8 @@ import streamlit as st
 # Configuração da página
 st.set_page_config(page_title="Aurora's Realm: The Enchanted Adventure", layout="wide")
 
-# Incorporando o HTML dentro do Streamlit
-st.markdown("""
+# Incorporando o HTML dentro do Streamlit usando st.components.v1.html
+st.components.v1.html("""
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -121,4 +121,4 @@ st.markdown("""
 
 </body>
 </html>
-""", unsafe_allow_html=True)
+""", height=1000, scrolling=True)
